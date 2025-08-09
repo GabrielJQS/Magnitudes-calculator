@@ -4,6 +4,7 @@
 #include <cctype>
 
 using namespace std;
+char resposta;
 
 int main() {
     // --- Variáveis declaradas dentro de main ---
@@ -29,7 +30,7 @@ int main() {
     // A massa deve ser um valor positivo, então vamos verificar isso.
     // --- Interação com o Usuário ---
     cout << "Bem-vindo ao Calculador de Peso Planetario!" << endl;
-    cout << "Por favor, insira o valor da massa em quilogramas (kg): "; 
+    cout << "Por favor, insira o valor de sua massa em quilogramas (kg): "; 
     cin >> massa;
 
     // Validação da massa (seu código já estava bom aqui!)
@@ -39,8 +40,8 @@ int main() {
     }
 
     cout << "\nPlanetas disponiveis: " << endl;
-    cout << "Mercurio, Venus, Terra, Marte, Jupiter, Saturno, Urano, Netuno, Plutao" << endl;
-    cout << "Agora, digite o nome do planeta: ";
+    cout << "Mercurio" << endl << "Venus" << endl << "Terra" <<endl << "Marte" << endl << "Jupiter" << endl << "Saturno" << endl << "Urano" << endl << "Netuno" << endl << "Plutao" << endl;
+    cout << "Agora, digite o nome do planeta no qual voce esta: ";
     cin >> nome_planeta;
     
     // --- Processamento dos Dados ---
@@ -59,6 +60,15 @@ int main() {
         double gravidade_do_planeta = gravidades[nome_planeta];
         forca_peso = massa * gravidade_do_planeta;
 
+        cout << "Voce conhece a formula da forca peso? S / N" << endl;
+        cin >> resposta;
+        // Verifica se a resposta é 's' ou 'S' para sim
+        if (tolower(resposta) == 's') {
+            cout << "Otimo! Entao voce sabe que a forca peso e dada por F = m * g, onde m e a massa e g e a gravidade do planeta." << endl;
+        } else {
+            cout << "Sem problemas! A formula da forca peso e F = m * g, onde m e a massa e g e a gravidade do planeta." << endl;
+        }
+
         cout << "\nSabe-se portanto que, a forca peso e dada por F = m * g." << endl;
         cout << "No planeta " << nome_planeta << ", a gravidade e " << gravidade_do_planeta << " m/s^2." << endl;
         cout << "O resultado da sua forca peso e: " << forca_peso << " Newtons (N)." << endl;
@@ -71,5 +81,8 @@ int main() {
 
     cout << "\nObrigado por usar esta calculadora!" << endl;
     
+    cout << "Pressione ENTER para sair." << endl;
+    cin.ignore();
+    cin.get();
     return 0;
-}
+    }
