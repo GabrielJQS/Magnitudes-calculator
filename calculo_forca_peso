@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <cctype>
+
+using namespace std;
+
+int main() {
+    // --- Variáveis declaradas dentro de main ---
+    double massa;
+    string nome_planeta;
+
+    // --- Mapa de Gravidades (com nome e tipo corretos) ---
+    // A chave (nome do planeta) está em minúsculas para facilitar a comparação.
+    map<string, float> gravidades;
+        gravidades ["mercurio"] = 3.7;
+        gravidades["venus"] = 8.87;
+        gravidades["terra"] = 9.81;
+        gravidades["marte"] = 3.721;    
+        gravidades["jupiter"] = 24.79;
+        gravidades["saturno"] = 10.44;
+        gravidades["urano"] = 8.69;
+        gravidades["netuno"] = 11.15;
+        gravidades["plutao"] = 0.62; // Plutão é considerado um planeta anão, mas incluído aqui para fins de exemplo.
+        gravidades["lua"] = 1.62; // Adicionando a Lua como exemplo de satélite natural.
+        gravidades["sol"] = 274; // Adicionando o Sol como exemplo de estrela, com gravidade muito alta.
+    
+    // --- Validação de Entrada ---
+    // A massa deve ser um valor positivo, então vamos verificar isso.
+    // --- Interação com o Usuário ---
+    cout << "Bem-vindo ao Calculador de Peso Planetario!" << endl;
+    cout << "Por favor, insira o valor da massa em quilogramas (kg): "; 
+    cin >> massa;
+
+    // Validação da massa (seu código já estava bom aqui!)
+    if (massa <= 0) {
+        cout << "Erro: A massa deve ser um valor positivo." << endl;
+        return 1; // Encerra o programa
+    }
+
+    cout << "\nPlanetas disponiveis: " << endl;
+    cout << "Mercurio, Venus, Terra, Marte, Jupiter, Saturno, Urano, Netuno, Plutao" << endl;
+    cout << "Agora, digite o nome do planeta: ";
+    cin >> nome_planeta;
+    
+    // --- Processamento dos Dados ---
+
+    // Padroniza a entrada do usuário para letras minúsculas
+    for (size_t i = 0; i < nome_planeta.length(); ++i) {
+        nome_planeta[i] = tolower(nome_planeta[i]);
+    }
+
+    // Valida se o planeta existe no mapa E calcula o peso
+    double forca_peso = 0.0;
+
+    // A mágica do map: substitui toda a cadeia if-else if!
+    if (gravidades.count(nome_planeta) > 0) {
+        // Se o planeta existe, calcula o peso
+        double gravidade_do_planeta = gravidades[nome_planeta];
+        forca_peso = massa * gravidade_do_planeta;
+
+        cout << "\nSabe-se portanto que, a forca peso e dada por F = m * g." << endl;
+        cout << "No planeta " << nome_planeta << ", a gravidade e " << gravidade_do_planeta << " m/s^2." << endl;
+        cout << "O resultado da sua forca peso e: " << forca_peso << " Newtons (N)." << endl;
+
+    } else {
+        // Se o planeta não existe no mapa
+        cout << "Planeta invalido. Por favor, insira um planeta da lista." << endl;
+        return 1; // Encerra o programa
+    }
+
+    cout << "\nObrigado por usar esta calculadora!" << endl;
+    
+    return 0;
+}
